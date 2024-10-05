@@ -1,13 +1,18 @@
-## Graph Metanetworks for Processing Diverse Neural Architectures
-**Authors:**  Derek Lim, Haggai Maron, Marc T. Law, Jonathan Lorraine, James Lucas
+## Weight Generation with Graph Metanetworks
 
-[[Project Page](https://research.nvidia.com/labs/toronto-ai/GMN/)] [[arXiv](https://arxiv.org/abs/2312.04501)]
+Based on ["Graph Metanetworks for Processing Diverse Neural Architectures"](https://arxiv.org/pdf/2312.04501) by Lim et al.
 
-### Code for constructing parameter graphs and running the model
+[Link to the original repository](https://github.com/cptq/graph_metanetworks)
 
-See `gmn/`. The directory `gmn/graph_construct/` has functions for construction the parameter graphs. In `gmn/` there is code for the graph metanetworks to run on top of the parameter graphs.
+This is a fun project that aims to explore an unconventional approach to model training. Given a neural network architecture with randomly initialized weights, can we transform 
+these weights into something adequate without relying on gradient descent algorithms? Neural architectures can be converted into parameter graphs, where each parameter is assigned
+to an edge, as demonstrated by Lim et al. Graph Metanetworks (GMNs) operate on these parameter graphs. An example of this problem is predicting the test accuracy for an unseen model
+(this is a graph-level problem, as the output is a scalar). Now, let’s assume the input space is restricted to image classifiers. An example of an edge-level problem is transforming
+the randomly initialized edge weights of an unseen classifier architecture.
 
-
-### Code for Reproducing Experiments in the Paper
-
-Still under NVIDIA internal approval process.
+### TODO
+- [ ] Write Resnet image classification training pipeline on CIFAR-10
+- [ ] Prepare a dataset of pretrained Resnets and store them as PyG graphs
+- [ ] Split the dataset into the train and test sets such that there is no overlap between distinct architectures in the sets
+- [ ] Modify GMN such that it takes time as input
+- [ ] Impelement flow matching training pipeline
